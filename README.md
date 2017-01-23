@@ -12,7 +12,7 @@ The secondary goal was to track URL usage and provide popularity statistics.
 
 ####We considered 3 main criteria, each with questions to guide the application's design and implementation: 
 
-##1. #Code Clarity
+##1. Code Clarity
 
 Is the application consistent with other applications you have written or seen?
 Are the files of the application laid out in a logical manner?
