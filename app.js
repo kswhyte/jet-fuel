@@ -1,11 +1,12 @@
 const reload = require('reload')
-const express = require("express")
+const express = require('express')
 const app = express()
+const indexTemplate = require('./templates')
 
 app.set('port', process.env.PORT || 3000)
 
 app.get("/", (req, res) => {
-  res.send(`<h1>Jet Fuel TEST</h1><script src='reload/reload.js'></script>`)
+  res.send(indexTemplate)
 })
 
 const server = app.listen(app.get('port'), () => {
