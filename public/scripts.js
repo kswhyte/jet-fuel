@@ -1,16 +1,8 @@
-const folderForm = document.querySelector('.folder-form')
-folderForm.addEventListener('submit', (e) => {
+$('.submit-button').on('click', (e) => {
   e.preventDefault()
-  const folderName = document.getElementById('URL').value
+  const folderName = $('#URL').val()
 
-  fetch('/api/folders', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: {
-      folderName
-    }
-  })
-  .catch(err => console.log(err))
-});
+  $.post('/api/folders/', { folderName })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+})
