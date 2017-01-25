@@ -16,9 +16,7 @@ const indexTemplate = (folders = '') => {
             <input id="folder-input" placeholder="Full URL folder..."></input>
             <button class="submit-button" type="submit">Submit</button>
           </form>
-          <ul id="folders-container">
-
-          </ul>
+          <ul id="folders-container"></ul>
         </body>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

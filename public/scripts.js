@@ -6,7 +6,11 @@ $(document).ready(() => {
 
 $('.submit-button').on('click', (e) => {
   e.preventDefault()
+
   const folderName = $('#folder-input').val()
+  if (!folderName.trim()) {
+    return
+  }
   $('#folder-input').val('')
 
   $.post('/api/folders/', { folderName })
