@@ -18,6 +18,10 @@ app.get('/', (req, res) => {
   res.send(indexTemplate())
 })
 
+app.get('/api/folders', (req, res) => {
+  res.send(foldersList(app.locals.folders))
+})
+
 app.post('/api/folders', (req, res) => {
   const { folderName } = req.body
   const id = md5(folderName)
