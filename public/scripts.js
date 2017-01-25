@@ -1,17 +1,8 @@
-// const fetch = require('isomorphic-fetch').fetch
+$('.submit-button').on('click', (e) => {
+  e.preventDefault()
+  const folderName = $('#URL').val()
 
-const postFolderName = (folderName) => {
-  console.log('folderName', folderName)
-  fetch('/api/folders', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: {
-      folderName
-    }
-  })
-  .catch(err => console.log(err))
-}
-
-module.exports = postFolderName
+  $.post('/api/folders/', { folderName })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+})
