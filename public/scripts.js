@@ -3,6 +3,6 @@ $('.submit-button').on('click', (e) => {
   const folderName = $('#folder-input').val()
 
   $.post('/api/folders/', { folderName })
-    .then(res => console.log(res))
+    .then(res => $('#folders-container').html(res))
     .catch(err => console.log(err))
 })
