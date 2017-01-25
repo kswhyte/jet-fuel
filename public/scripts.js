@@ -1,7 +1,8 @@
-// const fetch = require('isomorphic-fetch').fetch
+const folderForm = document.querySelector('.folder-form')
+folderForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const folderName = document.getElementById('URL').value
 
-const postFolderName = (folderName) => {
-  console.log('folderName', folderName)
   fetch('/api/folders', {
     method: 'POST',
     headers: {
@@ -12,6 +13,4 @@ const postFolderName = (folderName) => {
     }
   })
   .catch(err => console.log(err))
-}
-
-module.exports = postFolderName
+});

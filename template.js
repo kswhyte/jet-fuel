@@ -1,5 +1,3 @@
-// const postFolderName = require('./postFolderName')
-
 const indexTemplate = `
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +8,7 @@ const indexTemplate = `
   <body>
     <h1>Jet Fuel</h1>
     <section class="folder-form">
-      <form onSubmit="postFolderName(e)">
+      <form class="folder-form">
         <label for="URL">Add a new folder to house similar URLs:</label>
         <input id="URL" placeholder="Full URL folder..."></input>
         <button class="submit-button" type="submit">Submit</button>
