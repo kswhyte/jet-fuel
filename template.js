@@ -4,12 +4,14 @@ const indexTemplate = `
   <head>
     <meta charset="utf-8">
     <title>Jet Fuel</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Arsenal|Lato|Open+Sans" rel="stylesheet">
   </head>
   <body>
-    <h1>Jet Fuel</h1>
-    <form id="folder-form">
-      <label for="URL">Add a new folder to house similar URLs:</label>
-      <input id="URL" placeholder="Full URL folder..."></input>
+    <h1 class="title">Jet Fuel</h1>
+    <form onSubmit="postFolderName(e)">
+      <label for="folder-label">Add a new folder to house similar URLs:</label>
+      <input id="folder-input" placeholder="Full URL folder..."></input>
       <button class="submit-button" type="submit">Submit</button>
     </form>
   </body>
