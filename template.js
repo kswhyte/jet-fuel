@@ -9,7 +9,7 @@ const indexTemplate = `
   </head>
   <body>
     <h1 class="title">Jet Fuel</h1>
-    <form onSubmit="postFolderName(e)">
+    <form>
       <label for="folder-label">Add a new folder to house similar URLs:</label>
       <input id="folder-input" placeholder="Full URL folder..."></input>
       <button class="submit-button" type="submit">Submit</button>
