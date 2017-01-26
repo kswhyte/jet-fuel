@@ -2,12 +2,12 @@ const urlTemplate = (urls = {}) => {
   const urlKeys = Object.keys(urls)
 
   return urlKeys.reduce((str, urlID) => {
-    return str += `
+    return str += (`
       <tr>
-        <td>${urls[urlID][0]}</td>
-        <td>${urls[urlID][1]}</td>
+        <td><a href="${urls[urlID].url}">${urls[urlID].url}</a></td>
+        <td><a href="${urls[urlID].url}">${urls[urlID].shortURL}</a></td>
       </tr>
-    `
+    `)
   }, '')
 }
 
