@@ -25,25 +25,31 @@ app.get('/', (req, res) => {
 app.get('/api/folders', (req, res) => {
   database('folders').select()
     .then((folders) => {
-      res.status(200).send(foldersList(folders))
+      database('urls').select()
+        .then(urls => {
+          res.status(200).send(foldersList(folders, urls))
+        });
     })
     .catch((err) => {
       console.error(err)
     })
-  // res.send(foldersList(app.locals.folders))
 })
+
+// app.get('/api/folders/urls', (req, res) => {
+//
+// });
 
 app.post('/api/folders', (req, res) => {
   const { folderName } = req.body
   const folderID = md5(folderName)
 
-  const folder = {
+  const folderPackage = {
     id:folderID,
     name:folderName,
-    created_at: new Date
+    created_at:new Date
   }
 
-  database('folders').insert(folder)
+  database('folders').insert(folderPackage)
     .then(() => {
       database('folders').select()
         .then((folders) => {
@@ -58,15 +64,28 @@ app.post('/api/folders', (req, res) => {
 app.post('/api/folders/:folder_id', (req, res) => {
   const folderID = req.params.folder_id
   const { url, uri } = req.body
-  const folder = app.locals.folders[folderID]
   const urlID = md5(url)
   const shortURL = createShortURL(urlID, uri)
 
-  folder.urls[urlID] = {
+  const urlPackage = {
+    id:urlID,
     url,
-    shortURL
+    shortened:shortURL,
+    count:0,
+    folder_id:folderID,
+    created_at:new Date()
   }
-  res.send(urlTable(folder.urls))
+
+  database('urls').insert(urlPackage)
+    .then(() => {
+      database('urls').select()
+        .then((urls) => {
+          res.status(200).send(urlTable(urls))
+        })
+      .catch((err) => {
+        console.error(err)
+      })
+    })
 })
 
 const createShortURL = (urlID, uri) => {

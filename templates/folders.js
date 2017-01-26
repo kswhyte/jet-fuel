@@ -1,8 +1,6 @@
 const urlTemplate = require('./urlTable')
 
-const foldersList = (folders = {}) => {
-  console.log(folders);
-  // let folderKeys = Object.keys(folders)
+const foldersList = (folders = []) => {
   return folders.reduce((str, folder) => {
     return str += (`
       <li>
