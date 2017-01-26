@@ -6,6 +6,9 @@ const bodyParser = require('body-parser')
 const indexTemplate = require('./templates/index')
 const foldersList = require('./templates/folders')
 const urlTable = require('./templates/urlTable')
+const environment = process.env.NODE_ENV || 'development'
+const configuration = require('./knexfile.js')[environment]
+const database = require('knex')(configuration)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -20,16 +23,36 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/folders', (req, res) => {
-  res.send(foldersList(app.locals.folders))
+  database('folders').select()
+    .then((folders) => {
+      res.status(200).send(folders)
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+  // res.send(foldersList(app.locals.folders))
 })
 
 app.post('/api/folders', (req, res) => {
   const { folderName } = req.body
   const folderID = md5(folderName)
 
-  app.locals.folders[folderID] = { folderName, urls: {} }
+  const folder = {
+    id:folderID,
+    name:folderName,
+    created_at: new Date
+  }
 
-  res.send(foldersList(app.locals.folders))
+  database('folders').insert(folder)
+    .then(() => {
+      database('folders').select()
+        .then((folders) => {
+          response.status(200).send(foldersList(folders))
+        })
+    })
+    .catch((err) => {
+      console.error(err)
+    })
 })
 
 app.post('/api/folders/:folder_id', (req, res) => {
