@@ -39,7 +39,10 @@ app.post('/api/folders/:folder_id', (req, res) => {
   const urlID = md5(url)
   const shortURL = createShortURL(urlID, uri)
 
-  folder.urls[urlID] = [ url, shortURL ]
+  folder.urls[urlID] = {
+    url,
+    shortURL
+  }
   res.send(urlTable(folder.urls))
 })
 
