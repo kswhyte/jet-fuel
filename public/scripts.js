@@ -4,13 +4,12 @@ $(document).ready(() => {
     .catch(err => console.log(err))
 })
 
-$('.submit-button').on('click', (e) => {
+$('.folder-submit-button').on('click', (e) => {
   e.preventDefault()
 
   const folderName = $('#folder-input').val()
-  if (!folderName.trim()) {
-    return
-  }
+  if (!folderName.trim()) { return }
+
   $('#folder-input').val('')
 
   $.post('/api/folders/', { folderName })
