@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 app.get('/api/folders', (req, res) => {
   database('folders').select()
     .then((folders) => {
-      res.status(200).send(folders)
+      res.status(200).send(foldersList(folders))
     })
     .catch((err) => {
       console.error(err)
@@ -47,7 +47,7 @@ app.post('/api/folders', (req, res) => {
     .then(() => {
       database('folders').select()
         .then((folders) => {
-          response.status(200).send(foldersList(folders))
+          res.status(200).send(foldersList(folders))
         })
     })
     .catch((err) => {
