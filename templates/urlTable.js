@@ -4,8 +4,8 @@ const urlTemplate = (urls = {}) => {
   return urlKeys.reduce((str, urlID) => {
     return str += (`
       <tr>
-        <td>${urls[urlID][0]}</td>
-        <td>${urls[urlID][1]}</td>
+        <td><a href="${urls[urlID][0]}">${urls[urlID][0]}</a></td>
+        <td><a href="${urls[urlID][0]}">${urls[urlID][1]}</a></td>
       </tr>
     `)
   }, '')
