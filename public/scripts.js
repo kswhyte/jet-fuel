@@ -26,6 +26,6 @@ $(document).on('submit', '.url-form', (e) => {
   e.target[0].value = ''
 
   $.post(`/api/folders/${folderID}`, { url, uri })
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+    .then(res => console.log('res', res))
+    .catch(err => console.log('err', err))
 });

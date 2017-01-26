@@ -5,6 +5,7 @@ const md5 = require('md5')
 const bodyParser = require('body-parser')
 const indexTemplate = require('./templates/index')
 const foldersList = require('./templates/folders')
+const urlTable = require('./templates/urlTable')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -26,7 +27,7 @@ app.post('/api/folders', (req, res) => {
   const { folderName } = req.body
   const folderID = md5(folderName)
 
-  app.locals.folders[folderID] = folderName
+  app.locals.folders[folderID] = { folderName, urls: {} }
 
   res.send(foldersList(app.locals.folders))
 })
@@ -35,12 +36,14 @@ app.post('/api/folders/:folder_id', (req, res) => {
   const folderID = req.params.folder_id
   const { url, uri } = req.body
   const folder = app.locals.folders[folderID]
+  console.log('folders', app.locals.folders)
+  console.log('folder', folder)
   const urlID = md5(url)
   const shortURL = createShortURL(urlID, uri)
 
-  folder.urlID = [ url, shortURL ]
-
-  res.send(foldersList())
+  folder.urls[urlID] = [ url, shortURL ]
+  console.log('folder.urls', folder.urls)
+  res.send(urlTable(folder.urls))
 })
 
 const createShortURL = (urlID, uri) => {
