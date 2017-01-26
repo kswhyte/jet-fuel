@@ -19,11 +19,11 @@ exports.up = (knex, Promise) => {
       table.timestamps()
     })
   ])
-};
+}
 
 exports.down = function(knex, Promise) {
   return Promise.all([
       knex.schema.dropTable('folders'),
       knex.schema.dropTable('urls')
   ])
-};
+}

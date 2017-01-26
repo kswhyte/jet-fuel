@@ -1,8 +1,7 @@
 const urlTemplate = require('./urlTable')
+const $ = require('jquery')
 
 const foldersList = (folders = {}) => {
-  console.log(folders);
-  // let folderKeys = Object.keys(folders)
   return folders.reduce((str, folder) => {
     return str += (`
       <li>
