@@ -11,8 +11,9 @@ const indexTemplate = (folders = '') => {
 
         <body>
           <h1 class="title">Jet Fuel</h1>
+          <img class="rocket-ship" src="./icons/transport-2.svg" alt="rocket ship">
           <form>
-            <label>Add a new folder to house similar URLs:</label>
+            <label for="folder-label">Add a new folder to house similar URLs:</label>
             <input id="folder-input" placeholder="Full URL folder..."></input>
             <button class="folder-submit-button" type="submit">Submit</button>
           </form>

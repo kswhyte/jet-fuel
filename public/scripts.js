@@ -16,3 +16,16 @@ $('.folder-submit-button').on('click', (e) => {
     .then(res => $('#folders-container').html(res))
     .catch(err => console.log(err))
 })
+
+$(document).on('submit', '.url-form', (e) => {
+  e.preventDefault()
+  const uri = e.target.baseURI
+  console.log(uri)
+  const url = e.target[0].value
+  const folderID = e.target.id
+  e.target[0].value = ''
+
+  $.post(`/api/folders/${folderID}`, { url, uri })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+});

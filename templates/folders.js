@@ -6,9 +6,9 @@ const foldersList = (folders = {}) => {
       <li>
         <h3>${folders[folderID]}</h3>
         <button type="button" class="folder-drop-down">Drop Down</button>
-        <form>
+        <form class="url-form" id="${folderID}">
           <label>Add a URL that you would like to have shortened:</label>
-          <input class="url-input" type="url" placeholder="www.examplesite.com"></input>
+          <input class="url-input" type="url" value="http://"></input>
           <button class="url-submit-button" type="submit">Submit</button>
         </form>
       </li>

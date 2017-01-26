@@ -24,12 +24,28 @@ app.get('/api/folders', (req, res) => {
 
 app.post('/api/folders', (req, res) => {
   const { folderName } = req.body
-  const id = md5(folderName)
+  const folderID = md5(folderName)
 
-  app.locals.folders[id] = folderName
+  app.locals.folders[folderID] = folderName
 
   res.send(foldersList(app.locals.folders))
 })
+
+app.post('/api/folders/:folder_id', (req, res) => {
+  const folderID = req.params.folder_id
+  const { url, uri } = req.body
+  const folder = app.locals.folders[folderID]
+  const urlID = md5(url)
+  const shortURL = createShortURL(urlID, uri)
+
+  folder.urlID = [ url, shortURL ]
+
+  res.send(foldersList())
+})
+
+const createShortURL = (urlID, uri) => {
+  return `${uri.slice(7, uri.length)}${urlID.slice(0,5)}`
+}
 
 const server = app.listen(app.get('port'), () => {
   console.log(`Listening on port ${app.get('port')}`)
