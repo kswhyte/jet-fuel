@@ -36,13 +36,10 @@ app.post('/api/folders/:folder_id', (req, res) => {
   const folderID = req.params.folder_id
   const { url, uri } = req.body
   const folder = app.locals.folders[folderID]
-  console.log('folders', app.locals.folders)
-  console.log('folder', folder)
   const urlID = md5(url)
   const shortURL = createShortURL(urlID, uri)
 
   folder.urls[urlID] = [ url, shortURL ]
-  console.log('folder.urls', folder.urls)
   res.send(urlTable(folder.urls))
 })
 
