@@ -5,7 +5,7 @@ const foldersList = (folders = {}) => {
   return folders.reduce((str, folder) => {
     return str += (`
       <li>
-        <h3>${folder.name}</h3>
+        <h3 class="folder-name">${folder.name}</h3>
         <form class="url-form" id="${folder.id}">
           <label>Add a URL that you would like to have shortened:</label>
           <input class="url-input" type="url" value="http://"></input>
